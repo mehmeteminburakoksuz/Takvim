@@ -2,7 +2,7 @@ package com.example.takvim;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Build;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -17,15 +17,14 @@ public class EventEditActivity extends AppCompatActivity
 
     private LocalTime time;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_edit);
         initWidgets();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            time = LocalTime.now();
-        }
+        time = LocalTime.now();
         eventDateTV.setText("Date: " + CalendarUtils.formattedDate(CalendarUtils.selectedDate));
         eventTimeTV.setText("Time: " + CalendarUtils.formattedTime(time));
     }
