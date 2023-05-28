@@ -8,12 +8,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -56,17 +55,13 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
 
     public void previousWeekAction(View view)
     {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusWeeks(1);
-        }
+        CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusWeeks(1);
         setWeekView();
     }
 
     public void nextWeekAction(View view)
     {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusWeeks(1);
-        }
+        CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusWeeks(1);
         setWeekView();
     }
 
@@ -91,8 +86,16 @@ public class WeekViewActivity extends AppCompatActivity implements CalendarAdapt
         eventListView.setAdapter(eventAdapter);
     }
 
+    public void dailyAction(View view)
+    {
+        startActivity(new Intent(this, DailyCalendarActivity.class));
+    }
+
+
     public void newEventAction(View view)
     {
         startActivity(new Intent(this, EventEditActivity.class));
     }
+
+
 }

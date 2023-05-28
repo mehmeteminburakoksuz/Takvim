@@ -2,5 +2,4 @@
         <string name="app_name">CalendarAppExample</string>
         <string name="back"><![CDATA[<-]]></string>
         <string name="forward"><![CDATA[->]]></string>
-
 </resources>
