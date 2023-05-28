@@ -158,10 +158,10 @@
             app:cornerRadius="80dp">
 
             <Button
-                android:id="@+id/registerButton"
+                android:id="@+id/LogOnButton"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="Register"
+                android:text="Log On"
                 android:textSize="18sp"
                 android:backgroundTint="@color/purple"
                 android:textColor="@color/white"
