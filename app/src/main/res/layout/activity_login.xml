@@ -44,7 +44,7 @@
                 android:background="@drawable/custom_edittext"
                 android:drawableLeft="@drawable/ic_launcher_foreground"
                 android:drawablePadding="8dp"
-                android:hint="Username"
+                android:hint="E-mail"
                 android:padding="8dp"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background"
@@ -87,7 +87,7 @@
         app:cornerRadius="80dp">
 
         <Button
-            android:id="@+id/registerButton"
+            android:id="@+id/registerSButton"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="Register"
