@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "291604857235",
+    "project_id": "takvim-veritabani",
+    "storage_bucket": "takvim-veritabani.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:291604857235:android:513dc08e759b93d0996866",
+        "android_client_info": {
+          "package_name": "com.example.takvim"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCz3vcLWG_VrVKJnJxqtVIjDH_DK3KdFE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
