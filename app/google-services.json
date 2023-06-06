@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "998126814464",
+    "project_id": "takvim-13f88",
+    "storage_bucket": "takvim-13f88.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998126814464:android:96f9e3feed5333bcbe5fe5",
+        "android_client_info": {
+          "package_name": "com.example.takvim"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998126814464-077tcimq0p9s9aehnu5edrspnjsugo1r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4XRglPLy1NYLUSMUWPwdjgaJ9P7BfsuI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998126814464-077tcimq0p9s9aehnu5edrspnjsugo1r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:998126814464:android:1bc6267e1b7d35a4be5fe5",
+        "android_client_info": {
+          "package_name": "com.example.takvimnothaziran"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "998126814464-077tcimq0p9s9aehnu5edrspnjsugo1r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4XRglPLy1NYLUSMUWPwdjgaJ9P7BfsuI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "998126814464-077tcimq0p9s9aehnu5edrspnjsugo1r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

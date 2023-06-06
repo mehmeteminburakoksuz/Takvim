@@ -1,16 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.takvim">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/appphoto"
+        android:label="Takvim"
+        android:roundIcon="@drawable/appphoto"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:theme="@style/Theme.TakvimNotHaziran"
         tools:targetApi="31">
 
         <activity
@@ -23,15 +23,7 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".EventEditActivity"
-            android:exported="false" />
-        <activity
-            android:name=".WeekViewActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DailyCalendarActivity"
-            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="false" />
@@ -39,6 +31,9 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="true" />
+        <activity
+            android:name=".notEkle"
+            android:exported="false" />
 
     </application>
 
