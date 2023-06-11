@@ -142,24 +142,31 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            app:cardCornerRadius="30dp"
+            app:cardElevation="20dp"
+            android:background="@color/purple">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:padding="30dp"
-            android:background="@drawable/custom_edittext"
+            android:background="@color/white"
             app:cornerRadius="80dp">
 
             <Button
                 android:id="@+id/LogOnButton"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:text="Log On"
-                android:textSize="18sp"
                 android:backgroundTint="@color/purple"
+                android:text="Log On"
                 android:textColor="@color/white"
-                app:cornerRadius="20dp"
-                android:layout_marginTop="30dp"/>
+                android:textSize="18sp"
+                app:cornerRadius="20dp" />
         </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 </ScrollView>

@@ -13,15 +13,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import java.sql.Time;
 import java.util.Locale;
 
-public class notEkle extends AppCompatActivity {
+public class AddNote extends AppCompatActivity {
 
 
     CalendarView takvim;
@@ -91,7 +88,7 @@ public class notEkle extends AppCompatActivity {
         String aktivite = edt_aktivite.getText().toString();
 
         if(TextUtils.isEmpty(aktivite)){
-            Toast.makeText(notEkle.this,"Lütfen Bir Plan Giriniz" ,Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddNote.this,"Lütfen Bir Plan Giriniz" ,Toast.LENGTH_SHORT).show();
 
         }else {
             Not not = new Not();
@@ -103,12 +100,12 @@ public class notEkle extends AppCompatActivity {
 
 
             MainActivity.veritabanim.dao().notEkle(not);
-            Toast.makeText(notEkle.this,"Not Kaydedildi" ,Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddNote.this,"Not Kaydedildi" ,Toast.LENGTH_SHORT).show();
             edt_aktivite.setText("");
             btn_saat.setText("");
 
 
-            Intent intent = new Intent(notEkle.this,MainActivity.class);
+            Intent intent = new Intent(AddNote.this,MainActivity.class);
             startActivity(intent);
 
 

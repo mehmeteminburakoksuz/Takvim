@@ -32,7 +32,7 @@
             android:name=".RegisterActivity"
             android:exported="true" />
         <activity
-            android:name=".notEkle"
+            android:name=".AddNote"
             android:exported="false" />
 
     </application>
