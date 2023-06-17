@@ -9,10 +9,22 @@
     tools:context=".AddNote">
 
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Takvim"
+        android:textAlignment="center"
+        android:textSize="40dp"
+        android:textColor="@color/Mor"></EditText>
+
+
+
+
     <CalendarView
         android:id="@+id/takvim"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></CalendarView>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"></CalendarView>
 
     <LinearLayout
         android:layout_width="match_parent"

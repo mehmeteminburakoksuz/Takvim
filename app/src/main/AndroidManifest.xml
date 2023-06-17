@@ -3,7 +3,10 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.SET_ALARM" />
+
+
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
 
     <application
@@ -33,7 +36,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".RegisterActivity"
             android:exported="true" />
@@ -41,7 +44,7 @@
             android:name=".AddNote"
             android:exported="false" />
 
-
+        <receiver android:name=".AlarmReceiver"/>
 
     </application>
 </manifest>

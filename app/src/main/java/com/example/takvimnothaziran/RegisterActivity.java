@@ -73,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean validateInput(String firstName, String lastName, String username, String password, String tcNo, String phone, String email, String address) {
         if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || password.isEmpty() || tcNo.isEmpty() || phone.isEmpty() || email.isEmpty() || address.isEmpty()) {
-            Toast.makeText(RegisterActivity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegisterActivity.this, "Lutfen tum alanlari doldurun", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -96,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
-                                            Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(RegisterActivity.this, "Kayit Basarili!", Toast.LENGTH_SHORT).show();
                                             startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                                             finish();
                                         }
@@ -104,12 +104,12 @@ public class RegisterActivity extends AppCompatActivity {
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(RegisterActivity.this, "Registration Failed!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(RegisterActivity.this, "Kayit Basarisiz!", Toast.LENGTH_SHORT).show();
                                         }
                                     });
                         } else {
                             // Kullanıcı oluşturma başarısız olduysa hata mesajını göster
-                            Toast.makeText(RegisterActivity.this, "Registration Failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Kayit Basarisiz: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

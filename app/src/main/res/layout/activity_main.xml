@@ -25,7 +25,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="36dp"
         android:layout_marginHorizontal="26dp"
-        android:text="Select Time"
+        android:text="Alarm Zamani Seciniz"
         android:textSize="26dp"/>
 
     <Button
@@ -34,7 +34,7 @@
         android:layout_height="70dp"
         android:layout_marginTop="8dp"
         android:layout_marginHorizontal="26dp"
-        android:text="Set Alarm"
+        android:text="Alarmi Kur"
         android:textSize="26dp"/>
 
     <Button
@@ -43,7 +43,7 @@
         android:layout_height="70dp"
         android:layout_marginTop="8dp"
         android:layout_marginHorizontal="26dp"
-        android:text="Cancel Alarm"
+        android:text="Alarmi İptal Et"
         android:textSize="26dp"/>
 
 
@@ -66,7 +66,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="53dp"
-            android:text="Notes"
+            android:text="Notlar"
             android:textSize="30dp">
 
         </TextView>

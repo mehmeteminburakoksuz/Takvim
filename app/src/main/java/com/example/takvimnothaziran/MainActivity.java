@@ -37,6 +37,7 @@ import com.google.android.play.core.integrity.v;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -254,10 +255,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void createNotificationChannel(){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            CharSequence name = "akchannel";
-            String desc = "Channel for Alarm Manager";
+            CharSequence name = "burak";
+            String desc = " Alarm Manager";
             int imp = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel channel = new NotificationChannel("androidknowledge", name, imp);
+            NotificationChannel channel = new NotificationChannel("takvimApp", name, imp);
             channel.setDescription(desc);
 
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
@@ -282,12 +283,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         alarmManager.cancel(pendingIntent);
-        Toast.makeText(this, "Alarm Cancelled", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Alarm Iptal Edildi", Toast.LENGTH_SHORT).show();
     }
 
     private void setAlarm() {
 
-        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
 
         Intent intent = new Intent(this,AlarmReceiver.class);
 
@@ -296,7 +297,7 @@ public class MainActivity extends AppCompatActivity {
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY,pendingIntent);
 
-        Toast.makeText(this, "Alarm set Successfully", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Alarm Basariyla Ayarlandi", Toast.LENGTH_SHORT).show();
 
 
 
@@ -308,10 +309,10 @@ public class MainActivity extends AppCompatActivity {
                 .setTimeFormat(TimeFormat.CLOCK_12H)
                 .setHour(12)
                 .setMinute(0)
-                .setTitleText("Select Alarm Time")
+                .setTitleText("Alarm Zamani Seciniz")
                 .build();
 
-        picker.show(getSupportFragmentManager(),"foxandroid");
+        picker.show(getSupportFragmentManager(),"takvimApp");
 
         picker.addOnPositiveButtonClickListener(new View.OnClickListener() {
             @Override
