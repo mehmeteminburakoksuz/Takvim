@@ -43,8 +43,13 @@
         <activity
             android:name=".AddNote"
             android:exported="false" />
+        <activity
+            android:name=".AlarmActivity"
+            android:exported="false" />
 
         <receiver android:name=".AlarmReceiver"/>
+
+
 
     </application>
 </manifest>

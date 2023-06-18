@@ -38,7 +38,6 @@ public class User {
     }
 
 
-    // Getter ve Setter metotlarını ekleyebilirsiniz.
 
     public String getUserId() {
         return userId;

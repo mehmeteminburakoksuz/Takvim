@@ -25,23 +25,28 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Firebase kimlik doğrulama referansını al
         mAuth = FirebaseAuth.getInstance();
 
+        // Gerekli bileşenleri arayüzden al
         usernameEditText = findViewById(R.id.username);
         passwordEditText = findViewById(R.id.password);
         loginButton = findViewById(R.id.loginButton);
         registerSButton = findViewById(R.id.registerSButton);
 
+        // Giriş düğmesine tıklandığında işlemi başlat
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String username = usernameEditText.getText().toString().trim();
                 String password = passwordEditText.getText().toString().trim();
 
+                // Kullanıcıyı giriş yapmaya çalış
                 signInUser(username, password);
             }
         });
 
+        // Kayıt düğmesine tıklandığında kayıt aktivitesini başlat
         registerSButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,16 +56,19 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    // Kullanıcı girişini sağla
     private void signInUser(String username, String password) {
         mAuth.signInWithEmailAndPassword(username, password)
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
+                        // Giriş başarılıysa ana aktiviteye yönlendir
                         FirebaseUser user = mAuth.getCurrentUser();
-                        Toast.makeText(LoginActivity.this, "Giris Basarili!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Giriş Başarılı!", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         finish();
                     } else {
-                        Toast.makeText(LoginActivity.this, "Giris Hatasi!" +task.getException(), Toast.LENGTH_SHORT).show();
+                        // Giriş başarısızsa hata mesajını göster
+                        Toast.makeText(LoginActivity.this, "Giriş Hatası: " + task.getException(), Toast.LENGTH_SHORT).show();
                     }
                 });
 

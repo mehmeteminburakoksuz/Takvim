@@ -6,9 +6,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
-
 import android.app.AlarmManager;
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -32,12 +30,10 @@ import android.widget.Toast;
 import com.example.takvimnothaziran.databinding.ActivityMainBinding;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
-import com.google.android.play.core.integrity.v;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,69 +43,31 @@ public class MainActivity extends AppCompatActivity {
     private AlarmManager alarmManager;
     private PendingIntent pendingIntent;
 
-
-
-
-
-
-
+    // Veritabanı
     public static veritabani veritabanim;
     ListView list_View;
 
-    int images[]= {R.drawable.note};
-
+    // Gösterilecek resimler
+    int images[] = {R.drawable.note};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        createNotificationChannel();
-
-        binding.selectTimeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                showTimePicker();
-
-            }
-        });
-
-        binding.setAlarmBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                setAlarm();
-
-            }
-        });
-
-        binding.cancelAlarmBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                cancelAlarm();
-
-            }
-        });
-
-
-
-
-
-
-
 
         list_View = findViewById(R.id.list_view);
 
-        veritabanim = Room.databaseBuilder(getApplicationContext(),veritabani.class,"notdb")
+        // Veritabanını oluştur
+        veritabanim = Room.databaseBuilder(getApplicationContext(), veritabani.class, "notdb")
                 .allowMainThreadQueries().build();
 
         Button btn_notEkle = findViewById(R.id.btnnotEkle);
+        Button btn_alarmEkle = findViewById(R.id.btnalarmEkle);
 
+        // Not ekleme butonuna tıklandığında AddNote aktivitesini başlat
         btn_notEkle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,6 +76,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Alarm ekleme butonuna tıklandığında AlarmActivity aktivitesini başlat
+        btn_alarmEkle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AlarmActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Notları listeleme
         List<Not> notlar = MainActivity.veritabanim.dao().getNot();
         ArrayList arrayList = new ArrayList();
 
@@ -127,27 +95,28 @@ public class MainActivity extends AppCompatActivity {
 
         String veriler = "";
 
-        for(Not nt : notlar){
+        for (Not nt : notlar) {
             int id = nt.getId();
             String ikinciNotSaat = nt.getNotSaat();
             String ikinciNotTarih = nt.getNotTarih();
             String ikinciNot = nt.getNot();
 
-            veriler = veriler+ikinciNot+ikinciNotSaat+ikinciNotTarih;
+            veriler = veriler + ikinciNot + ikinciNotSaat + ikinciNotTarih;
             arrayList.add(veriler);
-            veriler="";
+            veriler = "";
 
             n.add(ikinciNot);
             s.add(ikinciNotSaat);
             t.add(ikinciNotTarih);
-
         }
 
-        MyAdapter adapter = new MyAdapter(this,n,s,t,images);
+        // Özel adapter oluşturma
+        MyAdapter adapter = new MyAdapter(this, n, s, t, images);
         list_View.setAdapter(adapter);
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,arrayList);
+        ArrayAdapter arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
 
+        // Listeye tıklanınca notu silmek için bir metin gösterme
         list_View.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
@@ -163,58 +132,47 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i){
+                    public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
                     }
                 });
 
                 diyalogOlustur.create().show();
-
-
-
             }
         });
-
-
-
     }
 
-    private  void  VeriSil(String listeId){
-
+    // Notu veritabanından silme
+    private void VeriSil(String listeId) {
         List<Not> notlariSil = MainActivity.veritabanim.dao().getNot();
         ArrayList arrayListSil = new ArrayList();
 
         int veriler;
 
-        for(Not silListe : notlariSil){
-
+        for (Not silListe : notlariSil) {
             int id = silListe.getId();
-
             veriler = id;
             arrayListSil.add(veriler);
-            veriler=0;
-
-
+            veriler = 0;
         }
+
         String sid = listeId;
         int id = Integer.valueOf(sid);
         int eleman = (int) arrayListSil.get(id);
 
         Not not = new Not();
-
         not.setId(eleman);
 
         MainActivity.veritabanim.dao().notSil(not);
 
-        Toast.makeText(getApplicationContext(),"Not silindi", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Not silindi", Toast.LENGTH_SHORT).show();
 
         finish();
         startActivity(getIntent());
-
-
     }
 
-    class MyAdapter extends ArrayAdapter<String>{
+    // Özel adapter sınıfı
+    class MyAdapter extends ArrayAdapter<String> {
 
         Context context;
         ArrayList rNot;
@@ -222,136 +180,31 @@ public class MainActivity extends AppCompatActivity {
         ArrayList rTarih;
         int rImgs[];
 
-        MyAdapter(Context c , ArrayList not ,ArrayList saat,ArrayList tarih,int imgs[]){
-            super(c,R.layout.custom_view,R.id.txt_not,not);
+        MyAdapter(Context c, ArrayList not, ArrayList saat, ArrayList tarih, int imgs[]) {
+            super(c, R.layout.custom_view, R.id.txt_not, not);
             this.context = c;
             this.rNot = not;
-            this.rSaat=saat;
-            this.rTarih=tarih;
-            this.rImgs=images;
+            this.rSaat = saat;
+            this.rTarih = tarih;
+            this.rImgs = images;
         }
 
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View row = layoutInflater.inflate(R.layout.custom_view,parent,false);
+            View row = layoutInflater.inflate(R.layout.custom_view, parent, false);
             ImageView images = row.findViewById(R.id.resim);
             TextView myNot = row.findViewById(R.id.txt_not);
             TextView mySaat = row.findViewById(R.id.txt_saat);
             TextView myTarih = row.findViewById(R.id.txt_tarih);
 
             images.setImageResource(rImgs[0]);
-            myNot.setText((CharSequence)rNot.get(position));
-            mySaat.setText((CharSequence)rSaat.get(position));
-            myTarih.setText((CharSequence)rTarih.get(position));
+            myNot.setText((CharSequence) rNot.get(position));
+            mySaat.setText((CharSequence) rSaat.get(position));
+            myTarih.setText((CharSequence) rTarih.get(position));
 
             return row;
-
-
         }
     }
-
-
-    private void createNotificationChannel(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            CharSequence name = "burak";
-            String desc = " Alarm Manager";
-            int imp = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel channel = new NotificationChannel("takvimApp", name, imp);
-            channel.setDescription(desc);
-
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
 }
-}
-
-
-
-
-
-    private void cancelAlarm() {
-
-        Intent intent = new Intent(this,AlarmReceiver.class);
-
-        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-
-        if (alarmManager == null){
-
-            alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
-        }
-
-        alarmManager.cancel(pendingIntent);
-        Toast.makeText(this, "Alarm Iptal Edildi", Toast.LENGTH_SHORT).show();
-    }
-
-    private void setAlarm() {
-
-        alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-
-        Intent intent = new Intent(this,AlarmReceiver.class);
-
-        pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY,pendingIntent);
-
-        Toast.makeText(this, "Alarm Basariyla Ayarlandi", Toast.LENGTH_SHORT).show();
-
-
-
-    }
-
-    private void showTimePicker() {
-
-        picker = new MaterialTimePicker.Builder()
-                .setTimeFormat(TimeFormat.CLOCK_12H)
-                .setHour(12)
-                .setMinute(0)
-                .setTitleText("Alarm Zamani Seciniz")
-                .build();
-
-        picker.show(getSupportFragmentManager(),"takvimApp");
-
-        picker.addOnPositiveButtonClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (picker.getHour() > 12){
-
-                    binding.selectedTime.setText(
-                            String.format("%02d",(picker.getHour()-12))+" : "+String.format("%02d",picker.getMinute())+" PM"
-                    );
-
-                }else {
-
-                    binding.selectedTime.setText(picker.getHour()+" : " + picker.getMinute() + " AM");
-
-                }
-
-                calendar = Calendar.getInstance();
-                calendar.set(Calendar.HOUR_OF_DAY,picker.getHour());
-                calendar.set(Calendar.MINUTE,picker.getMinute());
-                calendar.set(Calendar.SECOND,0);
-                calendar.set(Calendar.MILLISECOND,0);
-
-            }
-        });
-
-
-    }
-
-
-
-
-
-
-}
-
-
-
-
-
-
-

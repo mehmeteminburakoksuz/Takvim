@@ -39,10 +39,12 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        // Firebase kimlik doğrulama ve Firestore referansını al
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        firstNameEditText = findViewById(R.id.firstName);
+        // Gerekli bileşenleri arayüzden al
+        firstNameEditText = findViewById(R.id.username);
         lastNameEditText = findViewById(R.id.lastName);
         usernameEditText = findViewById(R.id.username);
         passwordEditText = findViewById(R.id.password);
@@ -52,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
         addressEditText = findViewById(R.id.address);
         logOnButton = findViewById(R.id.LogOnButton);
 
+        // Kayıt olma düğmesine tıklandığında işlemi başlat
         logOnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +67,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = emailEditText.getText().toString().trim();
                 String address = addressEditText.getText().toString().trim();
 
+                // Girdileri doğrula ve kullanıcıyı oluştur
                 if (validateInput(firstName, lastName, username, password, tcNo, phone, email, address)) {
                     createUser(firstName, lastName, username, password, tcNo, phone, email, address);
                 }
@@ -71,14 +75,16 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    // Girdileri doğrula
     private boolean validateInput(String firstName, String lastName, String username, String password, String tcNo, String phone, String email, String address) {
         if (firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || password.isEmpty() || tcNo.isEmpty() || phone.isEmpty() || email.isEmpty() || address.isEmpty()) {
-            Toast.makeText(RegisterActivity.this, "Lutfen tum alanlari doldurun", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegisterActivity.this, "Lütfen tüm alanları doldurun", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
     }
 
+    // Kullanıcıyı oluştur ve Firestore'a kaydet
     private void createUser(String firstName, String lastName, String username, String password, String tcNo, String phone, String email, String address) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
@@ -96,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
-                                            Toast.makeText(RegisterActivity.this, "Kayit Basarili!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(RegisterActivity.this, "Kayıt Başarılı!", Toast.LENGTH_SHORT).show();
                                             startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                                             finish();
                                         }
@@ -104,12 +110,12 @@ public class RegisterActivity extends AppCompatActivity {
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(RegisterActivity.this, "Kayit Basarisiz!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(RegisterActivity.this, "Kayıt Başarısız!", Toast.LENGTH_SHORT).show();
                                         }
                                     });
                         } else {
                             // Kullanıcı oluşturma başarısız olduysa hata mesajını göster
-                            Toast.makeText(RegisterActivity.this, "Kayit Basarisiz: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Kayıt Başarısız: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

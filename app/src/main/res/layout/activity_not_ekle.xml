@@ -37,15 +37,15 @@
             android:layout_weight="20"
             android:hint="Plan Girin"></EditText>
 
-    <Button
-        android:id="@+id/btn_saat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="popTimePicker"
-        android:text="Saat"
-        android:layout_weight="1"
-        android:textColor="@color/white"></Button>
-        </LinearLayout>
+        <Button
+            android:id="@+id/btn_saat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="popTimePicker"
+            android:text="Saat"
+            android:layout_weight="1"
+            android:textColor="@color/white"></Button>
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_kaydet"
